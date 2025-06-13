@@ -46,7 +46,7 @@ get_header();
         // INFO: Imagem de fundo aplicada via CSS variável customizada (--hero-bg)
         $hero_bg = get_field('hero_bg_img');
         ?>
-        <div class="hero-image mt-5 col-12 col-md-6 col-lg-5 text-center" <?php if ($hero_bg): ?>
+        <div class="hero-image mt-4 col-12 col-md-6 col-lg-5 text-center" <?php if ($hero_bg): ?>
             style="--hero-bg: url('<?= esc_url($hero_bg['url']); ?>');" <?php endif; ?>>
 
           <?php
