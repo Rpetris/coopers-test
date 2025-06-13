@@ -14,74 +14,86 @@
 
 get_header();
 ?>
-
 <main>
   <section id="hero" class="hero position-relative d-flex flex-column pt-5">
 
-    <!-- Header do hero: logo + texto + botão -->
-    <header class="container p-0 mb-5 mb-md-0 animate__animated animate__backInLeft animate__slow">
-
-      <!-- Logo do hero -->
-      <div class="hero-logo">
+    <!-- Container para o logo no topo do hero -->
+    <header class="hero-logo container p-0 mb-5 mb-md-0 animate__animated animate__backInLeft animate__slow">
+      <div>
         <?php
+        // INFO: Recupera o campo de imagem do ACF (logo do hero)
         $logo = get_field('hero_logo');
         if ($logo): ?>
           <img src="<?= esc_url($logo['url']); ?>" alt="<?= esc_attr($logo['alt']); ?>" />
         <?php endif; ?>
       </div>
+    </header>
 
+    <div class="container">
       <div class="hero-content row mt-5 mt-md-0 align-items-center">
 
-        <!-- Texto do hero -->
+        <!-- Coluna de texto (título, subtítulo, descrição e botão) -->
         <div class="hero-text col-12 col-md-6 col-lg-7 px-0">
+          <!-- Título principal do hero -->
           <h1 class="m-0 animate__animated animate__slideInLeft"><?php the_field('hero_heading'); ?></h1>
+          <!-- Subtítulo -->
           <h4 class="m-0 animate__animated animate__slideInRight"><?php the_field('hero_subheading'); ?></h4>
+          <!-- Descrição abaixo do subtítulo -->
           <p class="mt-3 animate__animated animate__fadeInUp animate__slow"><?php the_field('hero_description'); ?></p>
 
           <?php
+          // INFO: Recupera dados do botão do hero via ACF (tipo: Link)
           $hero_button = get_field('hero_button');
           if ($hero_button): ?>
             <a href="<?= esc_url($hero_button['url']) ?>" target="<?= esc_attr($hero_button['target']) ?>"
-              class="btn scrollBtn animate__animated animate__fadeIn animate__delay-2s" role="button">
+              class="btn scrollBtn animate__animated animate__fadeIn animate__delay-2s">
               <?= esc_html($hero_button['title']) ?>
             </a>
           <?php else: ?>
-            <a href="#todo-list" class="btn scrollBtn" role="button">Meet the To-do list</a>
+            <!-- Fallback: botão padrão se nenhum campo foi preenchido no ACF -->
+            <a href="#todo-list" class="btn scrollBtn">Meet the To-do list</a>
           <?php endif; ?>
         </div>
 
-        <!-- Imagem do hero dentro de figure -->
         <?php
+        // INFO: Imagem de fundo aplicada via CSS variável customizada (--hero-bg)
         $hero_bg = get_field('hero_bg_img');
         ?>
-        <figure class="hero-image mt-5 col-12 col-md-6 col-lg-5 text-center" <?php if ($hero_bg): ?>
+        <div class="hero-image mt-5 col-12 col-md-6 col-lg-5 text-center" <?php if ($hero_bg): ?>
             style="--hero-bg: url('<?= esc_url($hero_bg['url']); ?>');" <?php endif; ?>>
+
           <?php
+          // INFO: Imagem principal do lado direito do hero
           $hero_main_img = get_field('hero_main_image');
           if ($hero_main_img): ?>
             <img class="img-fluid w-100 animate__animated animate__fadeIn animate__delay-1s"
               src="<?= esc_url($hero_main_img['url']); ?>" alt="<?= esc_attr($logo['alt']); ?>" />
           <?php endif; ?>
-        </figure>
-
+        </div>
       </div>
-    </header>
 
-    <!-- Ícone de scroll -->
-    <?php
-    $scroll_link = get_field('hero_scroll_link');
-    $scroll_icon = get_field('hero_scroll_icon');
-    ?>
-    <div class="d-flex align-items-center justify-content-center hero-icon mt-4" aria-label="Scroll to next section">
-      <a href="<?= esc_url($scroll_link ?: '#todo-list') ?>">
-        <?php if ($scroll_icon): ?>
-          <img src="<?= esc_url($scroll_icon['url']) ?>" alt="<?= esc_attr($scroll_icon['alt']) ?>" />
-        <?php else: ?>
-          <img src="<?= get_template_directory_uri(); ?>/img/icons/icon-scroll.png" alt="Scroll Icon" />
-        <?php endif; ?>
-      </a>
+      <?php
+      // INFO: Ícone de scroll com link (personalizável via ACF)
+      $scroll_link = get_field('hero_scroll_link');
+      $scroll_icon = get_field('hero_scroll_icon');
+      if ($scroll_link): ?>
+        <div class="d-flex align-items-center justify-content-center hero-icon mt-4">
+          <a href="<?= esc_url($scroll_link) ?>">
+            <?php if ($scroll_icon): ?>
+              <img src="<?= esc_url($scroll_icon['url']) ?>" alt="<?= esc_attr($scroll_icon['alt']) ?>" />
+            <?php endif; ?>
+          </a>
+        </div>
+      <?php else: ?>
+        <!-- Fallback: Ícone e link padrão caso não configurado -->
+        <div class="d-flex align-items-center justify-content-center hero-icon mt-4">
+          <a href="#todo-list">
+            <img src="<?= get_template_directory_uri(); ?>/img/icons/icon-scroll.png" alt="Scroll Icon" />
+          </a>
+        </div>
+      <?php endif; ?>
+
     </div>
-
   </section>
 </main>
 
@@ -316,9 +328,6 @@ get_header();
     </form>
   </div>
 </section>
-
-</main>
-
 <?php
 
 get_footer();
