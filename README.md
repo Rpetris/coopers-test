@@ -12,9 +12,8 @@ O prazo estipulado para entrega do projeto foi de **14h30 a 24h**, sendo conclu�
   - Login: `produce`  
   - Senha: `mindless`  
 
-- **Painel WordPress (Admin):** http://maniacal-riddle.localsite.io/wp-admin  
-  - Login: `Coopers_Admin`  
-  - Senha: `Coopers_admin_pass`  
+- **Painel WordPress (Admin):**
+  - Enviado via Email. 
 
 Em caso de dúvidas ou problemas:  
 📧 Email: [ryanpetris@hotmail.com](mailto:ryanpetris@hotmail.com)  
