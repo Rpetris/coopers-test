@@ -65,6 +65,8 @@ O projeto mistura português e inglês:
 **Posts clicáveis ("Good Things"):**  
 Os links funcionam, mas **não foi criada uma página individual personalizada** para cada post. Essa funcionalidade foi deixada de fora para garantir a entrega dentro do prazo.
 
+**Formulário:**  
+Considerando que o gerenciamento do formulário envolve lógica de backend e validações específicas, optar por torná-lo dinâmico para que o usuário possa modificar os campos não é uma prática recomendada para este projeto. Portanto, a implementação adotada foi um formulário estático.
 ---
 
 ## 🎨 Estilização e Animações
