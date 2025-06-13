@@ -46,7 +46,7 @@ get_header();
         // INFO: Imagem de fundo aplicada via CSS variável customizada (--hero-bg)
         $hero_bg = get_field('hero_bg_img');
         ?>
-        <div class="hero-image mt-5 col-12 col-md-6 col-lg-5 text-center" <?php if ($hero_bg): ?>
+        <div class="hero-image mt-4 col-12 col-md-6 col-lg-5 text-center" <?php if ($hero_bg): ?>
             style="--hero-bg: url('<?= esc_url($hero_bg['url']); ?>');" <?php endif; ?>>
 
           <?php
@@ -75,7 +75,7 @@ get_header();
         <!-- Fallback: Ícone e link padrão caso não configurado -->
         <div class="d-flex align-items-center justify-content-center hero-icon mt-4">
           <a href="#todo-list">
-            <img src="<?= get_template_directory_uri(); ?>/img/icons/icon-scroll.png" alt="Scroll Icon" />
+            <img src="<?= get_template_directory_uri(); ?>/img/icons/icon-scroll.png" alt="Scroll Icon" data-aos="fade-up"/>
           </a>
         </div>
       <?php endif; ?>
@@ -238,7 +238,7 @@ get_header();
                   <?php
                   $excerpt = get_the_excerpt();
                   ?>
-                  <p><?= esc_html(mb_strimwidth($excerpt, 0, 50, '...')); ?></p>
+                  <p class="post-summary"><?= esc_html(mb_strimwidth($excerpt, 0, 50, '...')); ?></p>
 
                   <a href="<?php the_permalink(); ?>" class="read-more"
                     aria-label="Leia mais sobre <?php the_title_attribute(); ?>">
